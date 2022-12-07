@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
                 NavHost(
                     navController = navController,
                     startDestination = "home") {
-                    composable("home") {
+                    composable(route = "home") {
                         Box(modifier = Modifier.fillMaxSize(),
                             contentAlignment = Alignment.Center
                         ) {
@@ -45,25 +45,32 @@ class MainActivity : ComponentActivity() {
                         route = "detail",
                         deepLinks = listOf(
                             navDeepLink {
-                                //For open from site
-                                uriPattern = "https://insta.com/{id}"
+                                //For open from the site
+//                                uriPattern = "https://insta.com/{id}"
+                                uriPattern = "https://insta.com/{name}"
                                 action = Intent.ACTION_VIEW
 
                             }
                         ),
                         arguments = listOf(
-                            navArgument("id") {
-                                type = NavType.IntType
-                                defaultValue = -1
+//                            navArgument("id") {
+//                                type = NavType.IntType
+//                                defaultValue = -1
+//                            }
+                            navArgument("name") {
+                                type = androidx.navigation.NavType.StringType
+                                defaultValue = "Asya"
                             }
                         )
                     ) { entry ->
-                        val id = entry.arguments?.getInt("id")
+//                        val id = entry.arguments?.getInt("id")
+                        val name = entry.arguments?.getString("name")
                         Box(
                             modifier = Modifier.fillMaxSize(),
                             contentAlignment = Alignment.Center
                         ) {
-                            Text(text = "The id is $id")
+//                            Text(text = "The id is $id")
+                            Text(text = "The id is $name")
                         }
                     }
                 }
